@@ -1,17 +1,19 @@
 import './App.css';
+import React, {useMemo} from 'react';
 import Form from '../Form/Form';
 import Table from '../Table/Table';
 import {data} from "../../data/data"
 import {useSelector} from "react-redux"
 import Paginator from '../Paginator/Paginator';
 
-function App() {
+function App()  {
   const sort = useSelector((state) => state.table.sort)
   const page = useSelector((state) => state.table.page)
   const Colomn = useSelector((state) => state.table.sortColomn)
   const Condition = useSelector((state) => state.table.sortCondition)
   const argument = useSelector((state) => state.table.argument)
   const sortState = useSelector((state) => state.table.sortState)
+  const coutSort = useSelector((state) => state.table.coutSort)
   let renderData = data;
 
   switch (sort) {
@@ -44,16 +46,15 @@ function App() {
     }
   }
 
-  console.log(sortState)
+
   
-    if(sortState){
+   if(sortState){
       switch(Condition){
         case "equal":{
           renderData = renderData.filter((el)=> String(el[Colomn]) === argument);
           break;
         }
         case "contain":{
-          console.log("contain")
           renderData = renderData.filter((el)=> String(el[Colomn]).includes(String(argument)) === true)
           break;
           }
@@ -69,15 +70,16 @@ function App() {
         break;
         }
       }
-    }
+      }
+
   
 
   
 
 
   const siliseNum = 5 * page;
-  const numAllPages = Math.ceil(renderData.length/5);
-  renderData = renderData.slice(siliseNum-5, siliseNum);
+  const numAllPages = useMemo(() => Math.ceil(renderData.length/5),[ coutSort, page]);
+  renderData = useMemo(() =>  renderData.slice(siliseNum-5, siliseNum), [, coutSort,page]);
 
   return (
     <div className="App">
@@ -88,4 +90,4 @@ function App() {
   );
 }
 
-export default App;
+export default React.memo(App,);

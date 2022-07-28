@@ -9,6 +9,7 @@ export const table = createSlice({
     sortCondition: "",
     argument: "",
     sortState: false,
+    coutSort: 0,
   },
   reducers: {
     SetSort: (state, action) => {
@@ -25,15 +26,15 @@ export const table = createSlice({
     },
     formInputChange: (state, action) => {
       state.argument = action.payload;
-      state.sortState = false;
+     
       },
       formIinputCondition: (state, action) => {
         state.sortCondition = action.payload;
-        state.sortState = false;
+      
         },
         forminputColomn: (state, action) => {
           state.sortColomn = action.payload;
-          state.sortState = false;
+         
           },
           resetSort: (state) => {
             state.page = 1;
@@ -41,10 +42,12 @@ export const table = createSlice({
             state.sortCondition = "";
             state.sortColomn = "";
             state.sortState = false;
+            state.coutSort++;
             },
             subminForm: (state) => {
               state.page = 1;
               state.sortState = true;
+              state.coutSort++;
               },
   },
 })
