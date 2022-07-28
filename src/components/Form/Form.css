@@ -2,3 +2,8 @@
     margin-bottom: 30px;
     display: flex;
 }
+
+.resetbutton{
+    display: flex;
+    height: 39px;
+}

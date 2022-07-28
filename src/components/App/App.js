@@ -8,6 +8,10 @@ import Paginator from '../Paginator/Paginator';
 function App() {
   const sort = useSelector((state) => state.table.sort)
   const page = useSelector((state) => state.table.page)
+  const Colomn = useSelector((state) => state.table.sortColomn)
+  const Condition = useSelector((state) => state.table.sortCondition)
+  const argument = useSelector((state) => state.table.argument)
+  const sortState = useSelector((state) => state.table.sortState)
   let renderData = data;
 
   switch (sort) {
@@ -40,11 +44,41 @@ function App() {
     }
   }
 
+  console.log(sortState)
+  
+    if(sortState){
+      switch(Condition){
+        case "equal":{
+          renderData = renderData.filter((el)=> String(el[Colomn]) === argument);
+          break;
+        }
+        case "contain":{
+          console.log("contain")
+          renderData = renderData.filter((el)=> String(el[Colomn]).includes(String(argument)) === true)
+          break;
+          }
+        case "greater":{
+          renderData = renderData.filter((el)=> el[Colomn] > argument);
+          break;
+        }
+        case "less":{
+          renderData = renderData.filter((el)=> el[Colomn] < argument);
+          break;
+        }
+        default:{
+        break;
+        }
+      }
+    }
+  
+
+  
+
+
   const siliseNum = 5 * page;
   const numAllPages = Math.ceil(renderData.length/5);
-
   renderData = renderData.slice(siliseNum-5, siliseNum);
-  console.log(renderData)
+
   return (
     <div className="App">
       <Form/>

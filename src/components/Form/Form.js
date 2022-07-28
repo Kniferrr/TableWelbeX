@@ -1,14 +1,14 @@
 import React from 'react'
 import "./Form.css"
 import {useSelector, useDispatch} from "react-redux"
-import {formInputChange,formIinputCondition,forminputColomn} from "../../redusers/table"
+import {formInputChange,formIinputCondition,forminputColomn,resetSort,subminForm} from "../../redusers/table"
 
 
 function Form() {
   const dispatch = useDispatch()
   const argument = useSelector((state) => state.table.argument)
-
-
+  const sortCondition = useSelector((state) => state.table.sortCondition)
+  const sortColomn = useSelector((state) => state.table.sortColomn)
 
   const inputChange = (e) => {
     e.preventDefault();
@@ -27,21 +27,21 @@ function Form() {
 
   const onSubmit = (e) =>{
     e.preventDefault();
-    
+    dispatch(subminForm())
   }
 
   return (
-    <div>
+    <div className='form-group form'>
       <form className='form-group form' onSubmit={onSubmit}>
 
-      <select className='form-control' name="name" onChange={inputColomn}>
+      <select className='form-control' name="name" onChange={inputColomn} value={sortColomn}>
 				<option value="">Поле...</option>
 				<option value="name">Название</option>
 				<option value="points">Количество</option>
 				<option value="distance">Расстояние</option>
 			</select>
 
-			<select className='form-control' name="law" onChange={IinputCondition}>
+			<select className='form-control' name="law" onChange={IinputCondition} value={sortCondition}>
 				<option value="">Условие...</option>
 				<option value="equal">Равно</option>
 				<option value="contain">Содержит</option>
@@ -63,6 +63,9 @@ function Form() {
       OK
     </button>
       </form>
+      <button className='btn btn-dark resetbutton' 
+      onClick={()=> dispatch(resetSort())}
+      >Сбросить</button>
     </div>
   )
 }
