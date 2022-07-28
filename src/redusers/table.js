@@ -5,6 +5,9 @@ export const table = createSlice({
   initialState: {
     sort: "name",
     page: 1,
+    sortColomn: "",
+    sortCondition: "",
+    argument: ""
   },
   reducers: {
     SetSort: (state, action) => {
@@ -15,12 +18,30 @@ export const table = createSlice({
         state.sort = action.payload;
       }
 
-      console.log(state.sort)
     },
+    setNewPage: (state, action) => {
+      
+    state.page = action.payload;
+    },
+    formInputChange: (state, action) => {
+      state.argument = action.payload
+  
+        console.log(action.payload)
+      },
+      formIinputCondition: (state, action) => {
+        state.sortCondition = action.payload
+    
+          console.log(action.payload)
+        },
+        forminputColomn: (state, action) => {
+          state.sortColomn = action.payload
+      
+            console.log(action.payload)
+          },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { SetSort } = table.actions
+export const { SetSort,setNewPage,formInputChange,formIinputCondition,forminputColomn} = table.actions
 
 export default table.reducer

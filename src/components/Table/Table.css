@@ -5,11 +5,10 @@ table{
     display: table;
     text-align: center;
     table-layout: fixed;
-    width: 100%;
     border-collapse: collapse;
     border: 3px solid purple;
-    
-   
+    height: auto;
+    width:100%;
   }
 
   .table_header{
