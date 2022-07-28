@@ -3,11 +3,13 @@ import Form from '../Form/Form';
 import Table from '../Table/Table';
 import {data} from "../../data/data"
 import {useSelector} from "react-redux"
+import Paginator from '../Paginator/Paginator';
 
 function App() {
   const sort = useSelector((state) => state.table.sort)
   const page = useSelector((state) => state.table.page)
   let renderData = data;
+
   switch (sort) {
     case "name": {
       renderData = data.sort((a, b) => a.name > b.name ? 1 : -1);
@@ -39,12 +41,15 @@ function App() {
   }
 
   const siliseNum = 5 * page;
+  const numAllPages = Math.ceil(renderData.length/5);
+
   renderData = renderData.slice(siliseNum-5, siliseNum);
   console.log(renderData)
   return (
     <div className="App">
       <Form/>
       <Table data={renderData}/>
+      <Paginator numAllPages={numAllPages}/>
     </div>
   );
 }

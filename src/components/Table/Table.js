@@ -14,7 +14,7 @@ function Table(props) {
   <td>Дата</td>
   <td onClick={()=> {
     dispatch(SetSort("name"))          
-  }}>Имя</td>
+  }}>Название</td>
   <td onClick={()=>{
     dispatch(SetSort("points")) 
   }}>Количество</td>
@@ -34,10 +34,11 @@ function Table(props) {
 
 const TableBoudy = (props) =>{
 const {data} = props;
+let itemKey = 0;
 return(
     data.map((el)=>{
         return(
-            <tr >
+            <tr key={itemKey++}>
   <td>{el.date}</td>
   <td>{el.name}</td>
   <td>{el.points}</td>
