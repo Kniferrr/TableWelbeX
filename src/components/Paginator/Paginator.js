@@ -4,9 +4,7 @@ import "../Paginator/Paginator.css"
 import {setNewPage} from "../../redusers/table"
 
 const paginatorPages = (pos, page,numAllPages) =>{
-
     return page + pos > 0 ?  page + pos <= numAllPages ? page + pos: null : null;
-   
    };
 
 
@@ -41,4 +39,4 @@ function Paginator(props) {
 }
 
 
-export default Paginator
+export default React.memo(Paginator)

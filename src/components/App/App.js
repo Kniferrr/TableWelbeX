@@ -16,6 +16,8 @@ function App()  {
   const coutSort = useSelector((state) => state.table.coutSort)
   let renderData = data;
 
+
+  //сортировка по клику на хеддер колонки
   switch (sort) {
     case "name": {
       renderData = data.sort((a, b) => a.name > b.name ? 1 : -1);
@@ -47,7 +49,7 @@ function App()  {
   }
 
 
-  
+    //сортировка по форме
    if(sortState){
       switch(Condition){
         case "equal":{
@@ -78,6 +80,7 @@ function App()  {
 
 
   const siliseNum = 5 * page;
+  //useMemo для того что бы таблица не менялась пока не нажать OK или Сбросить
   const numAllPages = useMemo(() => Math.ceil(renderData.length/5),[ coutSort, page]);
   renderData = useMemo(() =>  renderData.slice(siliseNum-5, siliseNum), [, coutSort,page]);
 
@@ -90,4 +93,4 @@ function App()  {
   );
 }
 
-export default React.memo(App,);
+export default React.memo(App);
