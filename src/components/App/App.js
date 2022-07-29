@@ -18,11 +18,16 @@ function App()  {
   let renderData = data;
 
 
-  renderData = sotrHeader(data,renderData,sort);
+  
 
-   if(sortState){
-    renderData = sortForm(Condition,renderData,Colomn,argument);
-      }
+  
+    renderData = useMemo(() => sortForm(Condition,renderData,Colomn,argument), [coutSort]);
+      
+
+      renderData = sotrHeader(data,renderData,sort);
+
+      
+  
 
   const siliseNum = 5 * page;
   //useMemo для того что бы таблица не менялась пока не нажать OK или Сбросить

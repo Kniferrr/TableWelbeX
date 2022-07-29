@@ -5,26 +5,26 @@
 export const sotrHeader = (data,renderData,sort) =>{
     switch (sort) {
       case "name": {
-        renderData = data.sort((a, b) => a.name > b.name ? 1 : -1);
+        renderData = renderData.sort((a, b) => a.name > b.name ? 1 : -1);
         break;
       } case "unname": {
-        renderData = data.sort((a, b) => a.name > b.name ? 1 : -1);
+        renderData = renderData.sort((a, b) => a.name > b.name ? 1 : -1);
         renderData = renderData.reverse();
         break;
       }
       case "points":{
-        renderData = data.sort((a, b) => a.points > b.points ? 1 : -1);
+        renderData = renderData.sort((a, b) => a.points > b.points ? 1 : -1);
         break;
       }
       case "unpoints":{
-        renderData = data.sort((a, b) => a.points > b.points ? -1 : 1);
+        renderData = renderData.sort((a, b) => a.points > b.points ? -1 : 1);
         break;
       }
       case "distance":{
-        renderData = data.sort((a, b) => a.distance > b.distance ? 1 : -1);
+        renderData = renderData.sort((a, b) => a.distance > b.distance ? 1 : -1);
         break;
       }case "undistance":{
-        renderData = data.sort((a, b) => a.distance > b.distance ? -1 : 1);
+        renderData = renderData.sort((a, b) => a.distance > b.distance ? -1 : 1);
         break;
       }
       default:{
@@ -37,6 +37,7 @@ export const sotrHeader = (data,renderData,sort) =>{
   
 export  const sortForm = (Condition,renderData,Colomn,argument) =>{
     //сортировка по форме
+   
     switch(Condition){
       case "equal":{
         renderData = renderData.filter((el)=> String(el[Colomn]) === argument);
