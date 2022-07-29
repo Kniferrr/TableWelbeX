@@ -1,50 +1,34 @@
 import './App.css';
+import React, {useMemo} from 'react';
 import Form from '../Form/Form';
 import Table from '../Table/Table';
 import {data} from "../../data/data"
 import {useSelector} from "react-redux"
 import Paginator from '../Paginator/Paginator';
+import {sotrHeader,sortForm} from "./sotr"
 
-function App() {
+function App()  {
   const sort = useSelector((state) => state.table.sort)
   const page = useSelector((state) => state.table.page)
+  const Colomn = useSelector((state) => state.table.sortColomn)
+  const Condition = useSelector((state) => state.table.sortCondition)
+  const argument = useSelector((state) => state.table.argument)
+  const sortState = useSelector((state) => state.table.sortState)
+  const coutSort = useSelector((state) => state.table.coutSort)
   let renderData = data;
 
-  switch (sort) {
-    case "name": {
-      renderData = data.sort((a, b) => a.name > b.name ? 1 : -1);
-      break;
-    } case "unname": {
-      renderData = data.sort((a, b) => a.name > b.name ? 1 : -1);
-      renderData = renderData.reverse();
-      break;
-    }
-    case "points":{
-      renderData = data.sort((a, b) => a.points > b.points ? 1 : -1);
-      break;
-    }
-    case "unpoints":{
-      renderData = data.sort((a, b) => a.points > b.points ? -1 : 1);
-      break;
-    }
-    case "distance":{
-      renderData = data.sort((a, b) => a.distance > b.distance ? 1 : -1);
-      break;
-    }case "undistance":{
-      renderData = data.sort((a, b) => a.distance > b.distance ? -1 : 1);
-      break;
-    }
-    default:{
-       renderData = data;
-       break;
-    }
-  }
+
+  renderData = sotrHeader(data,renderData,sort);
+
+   if(sortState){
+    renderData = sortForm(Condition,renderData,Colomn,argument);
+      }
 
   const siliseNum = 5 * page;
-  const numAllPages = Math.ceil(renderData.length/5);
+  //useMemo для того что бы таблица не менялась пока не нажать OK или Сбросить
+  const numAllPages = useMemo(() => Math.ceil(renderData.length/5),[ coutSort, page,sort]);
+  renderData = useMemo(() =>  renderData.slice(siliseNum-5, siliseNum), [, coutSort,page,sort]);
 
-  renderData = renderData.slice(siliseNum-5, siliseNum);
-  console.log(renderData)
   return (
     <div className="App">
       <Form/>
@@ -53,5 +37,4 @@ function App() {
     </div>
   );
 }
-
-export default App;
+export default React.memo(App);
