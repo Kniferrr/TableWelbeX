@@ -5,6 +5,7 @@ import Table from '../Table/Table';
 import {data} from "../../data/data"
 import {useSelector} from "react-redux"
 import Paginator from '../Paginator/Paginator';
+import {sotrHeader,sortForm} from "./sotr"
 
 function App()  {
   const sort = useSelector((state) => state.table.sort)
@@ -17,72 +18,16 @@ function App()  {
   let renderData = data;
 
 
-  //сортировка по клику на хеддер колонки
-  switch (sort) {
-    case "name": {
-      renderData = data.sort((a, b) => a.name > b.name ? 1 : -1);
-      break;
-    } case "unname": {
-      renderData = data.sort((a, b) => a.name > b.name ? 1 : -1);
-      renderData = renderData.reverse();
-      break;
-    }
-    case "points":{
-      renderData = data.sort((a, b) => a.points > b.points ? 1 : -1);
-      break;
-    }
-    case "unpoints":{
-      renderData = data.sort((a, b) => a.points > b.points ? -1 : 1);
-      break;
-    }
-    case "distance":{
-      renderData = data.sort((a, b) => a.distance > b.distance ? 1 : -1);
-      break;
-    }case "undistance":{
-      renderData = data.sort((a, b) => a.distance > b.distance ? -1 : 1);
-      break;
-    }
-    default:{
-       renderData = data;
-       break;
-    }
-  }
+  renderData = sotrHeader(data,renderData,sort);
 
-
-    //сортировка по форме
    if(sortState){
-      switch(Condition){
-        case "equal":{
-          renderData = renderData.filter((el)=> String(el[Colomn]) === argument);
-          break;
-        }
-        case "contain":{
-          renderData = renderData.filter((el)=> String(el[Colomn]).includes(String(argument)) === true)
-          break;
-          }
-        case "greater":{
-          renderData = renderData.filter((el)=> el[Colomn] > argument);
-          break;
-        }
-        case "less":{
-          renderData = renderData.filter((el)=> el[Colomn] < argument);
-          break;
-        }
-        default:{
-        break;
-        }
+    renderData = sortForm(Condition,renderData,Colomn,argument);
       }
-      }
-
-  
-
-  
-
 
   const siliseNum = 5 * page;
   //useMemo для того что бы таблица не менялась пока не нажать OK или Сбросить
-  const numAllPages = useMemo(() => Math.ceil(renderData.length/5),[ coutSort, page]);
-  renderData = useMemo(() =>  renderData.slice(siliseNum-5, siliseNum), [, coutSort,page]);
+  const numAllPages = useMemo(() => Math.ceil(renderData.length/5),[ coutSort, page,sort]);
+  renderData = useMemo(() =>  renderData.slice(siliseNum-5, siliseNum), [, coutSort,page,sort]);
 
   return (
     <div className="App">
@@ -92,5 +37,4 @@ function App()  {
     </div>
   );
 }
-
 export default React.memo(App);
