@@ -1,2 +1,4 @@
+# TableWelbeX
 https://kniferrr.github.io/TableWelbeX/
-Без сервера
+
+Таблица с сортировками, делал как тестовое задание.
