@@ -20,6 +20,9 @@ table{
   th td {
     border: 20px;
   }
+  thead tr td:hover {
+    cursor: pointer;
+  }
   
   thead th:nth-child(1) {
     width: 30%;
