@@ -14,3 +14,12 @@
     border-color:rgb(146, 147, 148);
     background-color: rgb(82, 76, 76);
 }
+
+.btn{
+   margin: 1px;
+}
+
+.btnpaginator{
+    width: 42px;
+    height: 38px;
+}
