@@ -15,11 +15,11 @@ function Paginator() {
     
     <div className='paginator'>
 
-        <span> <button className='btn  btn-dark ' 
+        <span> <button className='btn  btn-dark btnpaginator btnScipPaginator' 
     onClick={()=> dispatch(setNewPage(1))}> First </button></span>
 
     <span>{page === numAllPages ? 
-         <button className='btn  btn-dark ' 
+         <button className='btn  btn-dark btnpaginator' 
     onClick={()=> dispatch(setNewPage(paginatorPages(-4, page, numAllPages)))}>
         {paginatorPages(-4, page, numAllPages)}</button> 
         : null}</span>
@@ -57,12 +57,12 @@ function Paginator() {
         : null}</span>
 
         <span>{page === 1 ? 
-         <button className='btn  btn-dark ' 
+         <button className='btn  btn-dark btnpaginator' 
     onClick={()=> dispatch(setNewPage(paginatorPages(4, page, numAllPages)))}>
         {paginatorPages(4, page, numAllPages)}</button> 
         : null}</span>
         
-        <span> <button className='btn  btn-dark ' 
+        <span> <button className='btn  btn-dark btnpaginator btnScipPaginator' 
     onClick={()=> dispatch(setNewPage(numAllPages))}> Last </button></span>
 
         </div>
