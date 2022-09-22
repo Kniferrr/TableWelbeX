@@ -1,20 +1,35 @@
-import React from 'react'
-import {useSelector, useDispatch} from "react-redux"
-import "../Paginator/Paginator.css"
-import {setNewPage} from "../../redusers/table"
+import React from 'react';
+import {useSelector, useDispatch} from "react-redux";
+import "../Paginator/Paginator.css";
+import {setNewPage} from "../../Store/redusers/table";
 
-const paginatorPages = (pos, page,numAllPages) =>{
+const paginatorPages = (pos, page,numAllPages) => {
     return page + pos > 0 ?  page + pos <= numAllPages ? page + pos: null : null;
    };
 
 
-function Paginator(props) {
-    const dispatch = useDispatch()
-    const {numAllPages} = props;
-    const page = useSelector((state) => state.table.page);
-
+function Paginator() {
+    const dispatch = useDispatch();
+    const {page,numAllPages} = useSelector((state) => state.table);
   return (
+    
     <div className='paginator'>
+
+        <span> <button className='btn  btn-dark btnpaginator' 
+    onClick={()=> dispatch(setNewPage(1))}> First </button></span>
+
+    <span>{page === numAllPages ? 
+         <button className='btn  btn-dark btnpaginator' 
+    onClick={()=> dispatch(setNewPage(paginatorPages(-4, page, numAllPages)))}>
+        {paginatorPages(-4, page, numAllPages)}</button> 
+        : null}</span>
+
+        <span>{ page === numAllPages || page === numAllPages - 1 ? 
+         <button className='btn  btn-dark btnpaginator' 
+    onClick={()=> dispatch(setNewPage(paginatorPages(-3, page, numAllPages)))}>
+        {paginatorPages(-3, page, numAllPages)}</button> 
+        : null}</span>
+
     <button className='btn btn-dark btnpaginator' 
     onClick={()=> dispatch(setNewPage(paginatorPages(-2, page, numAllPages)))}>
         {paginatorPages(-2, page, numAllPages)}</button>
@@ -34,9 +49,26 @@ function Paginator(props) {
     <button className='btn  btn-dark btnpaginator' 
     onClick={()=> dispatch(setNewPage(paginatorPages(2, page, numAllPages)))}>
         {paginatorPages(2, page, numAllPages)}</button>
+
+        <span>{page === 1 || page === 2 ? 
+         <button className='btn  btn-dark btnpaginator' 
+    onClick={()=> dispatch(setNewPage(paginatorPages(3, page, numAllPages)))}>
+        {paginatorPages(3, page, numAllPages)}</button> 
+        : null}</span>
+
+        <span>{page === 1 ? 
+         <button className='btn  btn-dark btnpaginator' 
+    onClick={()=> dispatch(setNewPage(paginatorPages(4, page, numAllPages)))}>
+        {paginatorPages(4, page, numAllPages)}</button> 
+        : null}</span>
+        
+        <span> <button className='btn  btn-dark btnpaginator' 
+    onClick={()=> dispatch(setNewPage(numAllPages))}> Last </button></span>
+
         </div>
+
   )
-}
+};
 
 
-export default React.memo(Paginator)
+export default React.memo(Paginator);

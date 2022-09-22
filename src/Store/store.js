@@ -1,4 +1,4 @@
-import table from "../../redusers/table"
+import table from "./redusers/table"
 import { configureStore } from '@reduxjs/toolkit'
 
 export default configureStore({

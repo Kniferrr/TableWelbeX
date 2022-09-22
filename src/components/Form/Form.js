@@ -1,47 +1,28 @@
 import React from 'react'
 import "./Form.css"
 import {useSelector, useDispatch} from "react-redux"
-import {formInputChange,formIinputCondition,forminputColomn,resetSort,subminForm} from "../../redusers/table"
+import {formInputChange,formIinputCondition,forminputColomn,resetSort,subminForm} from "../../Store/redusers/table"
 
 
 function Form() {
   const dispatch = useDispatch()
-  const argument = useSelector((state) => state.table.argument)
-  const sortCondition = useSelector((state) => state.table.sortCondition)
-  const sortColomn = useSelector((state) => state.table.sortColomn)
-
-  const inputChange = (e) => {
-    e.preventDefault();
-    dispatch(formInputChange(e.target.value))
-  }
-
-  const IinputCondition = (e) =>{
-    e.preventDefault();
-    dispatch(formIinputCondition(e.target.value))
-  }
-
-  const inputColomn = (e) =>{
-    e.preventDefault();
-    dispatch(forminputColomn(e.target.value))
-  }
-
-  const onSubmit = (e) =>{
-    e.preventDefault();
-    dispatch(subminForm())
-  }
+  const {argument, sortCondition, sortColomn} = useSelector((state) => state.table)
 
   return (
     <div className='form-group form'>
-      <form className='form-group form' onSubmit={onSubmit}>
+      <form className='form-group form' onSubmit={(e)=> {
+        e.preventDefault();
+        dispatch(subminForm());
+      }}>
 
-      <select className='form-control' name="name" onChange={inputColomn} value={sortColomn}>
+      <select className='form-control' name="name" onChange={(e)=> dispatch(forminputColomn(e.target.value))} value={sortColomn}>
 				<option value="">Поле...</option>
 				<option value="name">Название</option>
 				<option value="points">Количество</option>
 				<option value="distance">Расстояние</option>
 			</select>
 
-			<select className='form-control' name="law" onChange={IinputCondition} value={sortCondition}>
+			<select className='form-control' name="law" onChange={(e)=> dispatch(formIinputCondition(e.target.value))} value={sortCondition}>
 				<option value="">Условие...</option>
 				<option value="equal">Равно</option>
 				<option value="contain">Содержит</option>
@@ -53,7 +34,7 @@ function Form() {
         className='form-control'
 				name="argument"
         value={argument}
-				onChange={inputChange}
+				onChange={(e)=> dispatch(formInputChange(e.target.value))}
 				type="text"
 				placeholder="Значение"
 				required

@@ -1,7 +1,4 @@
 
-
-
-//сортировка по клику на хеддер колонки
 export const sotrHeader = (data,renderData,sort) =>{
     switch (sort) {
       case "name": {
@@ -36,7 +33,6 @@ export const sotrHeader = (data,renderData,sort) =>{
   }
   
 export  const sortForm = (Condition,renderData,Colomn,argument) =>{
-    //сортировка по форме
    
     switch(Condition){
       case "equal":{

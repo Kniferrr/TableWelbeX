@@ -1,11 +1,16 @@
-import React from 'react'
-import "../Table/Table.css"
-import {useDispatch } from 'react-redux'
-import {SetSort} from "../../redusers/table"
+import React, {useMemo, useEffect} from 'react';
+import "../Table/Table.css";
+import {useDispatch } from 'react-redux';
+import {setnumAllPages, SetSort} from "../../Store/redusers/table";
+import {useSelector} from "react-redux";
+import {data} from "../../data/data";
+import {sotrHeader,sortForm} from "../App/sotr";
 
-function Table(props) {
-    const dispatch = useDispatch()
-    const {data} = props;
+
+
+function Table() {
+    const dispatch = useDispatch();
+
   return (
     <div className='table'>
         <table>
@@ -24,7 +29,7 @@ function Table(props) {
         </tr>
         </thead>
         <tbody>
-    <TableBoudy data={data}/>
+    <TableBoudy/>
     </tbody>
     </table>
     </div>
@@ -32,11 +37,28 @@ function Table(props) {
 }
 
 
-const TableBoudy = (props) =>{
-const {data} = props;
+const TableBoudy = () =>{
+  const dispatch = useDispatch()
+
+  const {sort, page, sortColomn, sortCondition, argument,coutSort} = useSelector((state) => state.table);
+    let renderData = data;
+
+    renderData = useMemo(() =>  sortForm(sortCondition,renderData,sortColomn,argument), [coutSort]);
+    
+    renderData = sotrHeader(data,renderData,sort);
+      
+    const siliseNum = 5 * page;
+    const numAllPages =  Math.ceil(renderData.length/5);
+  
+    renderData =  renderData.slice(siliseNum-5, siliseNum);
+    
+  useEffect(() => {
+    dispatch(setnumAllPages(numAllPages));
+  },[renderData]);
+
 let itemKey = 0;
 return(
-    data.map((el)=>{
+    renderData.map((el)=>{
         return(
             <tr key={itemKey++}>
   <td>{el.date}</td>
