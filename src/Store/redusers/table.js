@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   sort: "name",
@@ -9,35 +9,31 @@ const initialState = {
   argument: "",
   sortState: false,
   coutSort: 0,
-  error: false
+  error: false,
 };
 
 export const table = createSlice({
-  name: 'table',
+  name: "table",
   initialState,
   reducers: {
     SetSort: (state, action) => {
-
       if (state.sort === action.payload) {
-        state.sort = `${"un"}${action.payload}`
+        state.sort = `${"un"}${action.payload}`;
       } else {
         state.sort = action.payload;
       }
-
     },
     setNewPage: (state, action) => {
       state.page = action.payload;
     },
     formInputChange: (state, action) => {
       state.argument = action.payload;
-
     },
     formIinputCondition: (state, action) => {
       state.sortCondition = action.payload;
     },
     forminputColomn: (state, action) => {
       state.sortColomn = action.payload;
-
     },
     resetSort: (state) => {
       state.page = 1;
@@ -57,10 +53,20 @@ export const table = createSlice({
     },
     setnumAllPages: (state, action) => {
       state.numAllPages = action.payload;
-    }
+    },
   },
-})
+});
 
-export const { SetSort, setNewPage, formInputChange, formIinputCondition, forminputColomn, resetSort, submitForm, ERROR, setnumAllPages } = table.actions
+export const {
+  SetSort,
+  setNewPage,
+  formInputChange,
+  formIinputCondition,
+  forminputColomn,
+  resetSort,
+  submitForm,
+  ERROR,
+  setnumAllPages,
+} = table.actions;
 
-export default table.reducer
+export default table.reducer;

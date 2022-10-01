@@ -1,9 +1,9 @@
 .form {
-    margin-bottom: 30px;
-    display: flex;
+  margin-bottom: 30px;
+  display: flex;
 }
 
 .resetbutton {
-    display: flex;
-    height: 39px;
+  display: flex;
+  height: 39px;
 }

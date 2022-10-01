@@ -1,30 +1,39 @@
-import React from 'react';
+import React from "react";
 import "../Table/Table.css";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { SetSort } from "../../Store/redusers/table";
 import TableBoudy from "../TableBoudy/TableBoudy";
-
-
-
 
 function Table() {
   const dispatch = useDispatch();
 
   return (
-    <div className='table'>
+    <div className="table">
       <table>
         <thead>
-          <tr className='table_header'>
+          <tr className="table_header">
             <td>Дата</td>
-            <td onClick={() => {
-              dispatch(SetSort("name"))
-            }}>Название</td>
-            <td onClick={() => {
-              dispatch(SetSort("points"))
-            }}>Количество</td>
-            <td onClick={() => {
-              dispatch(SetSort("distance"))
-            }}>Расстояние</td>
+            <td
+              onClick={() => {
+                dispatch(SetSort("name"));
+              }}
+            >
+              Название
+            </td>
+            <td
+              onClick={() => {
+                dispatch(SetSort("points"));
+              }}
+            >
+              Количество
+            </td>
+            <td
+              onClick={() => {
+                dispatch(SetSort("distance"));
+              }}
+            >
+              Расстояние
+            </td>
           </tr>
         </thead>
         <tbody>
@@ -32,7 +41,7 @@ function Table() {
         </tbody>
       </table>
     </div>
-  )
-};
+  );
+}
 
 export default React.memo(Table);
