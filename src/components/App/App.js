@@ -4,11 +4,11 @@ import Form from '../Form/Form';
 import Table from '../Table/Table';
 import Paginator from '../Paginator/Paginator';
 
-function App()  {
+function App() {
   return (
     <div className="App">
-      <Form/>
-      <Table/>
+      <Form />
+      <Table />
       <Paginator />
     </div>
   );

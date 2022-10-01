@@ -70,7 +70,7 @@ export const data = [
 		points: 1,
 		name: 'Mike',
 		distance: 65
-	},{
+	}, {
 		date: 2003,
 		points: 4,
 		name: 'Mike',
@@ -141,7 +141,7 @@ export const data = [
 		points: 1,
 		name: 'Mike',
 		distance: 65
-	},{
+	}, {
 		date: 2003,
 		points: 4,
 		name: 'Mike',
@@ -212,7 +212,7 @@ export const data = [
 		points: 1,
 		name: 'Mike',
 		distance: 65
-	},{
+	}, {
 		date: 2003,
 		points: 4,
 		name: 'Mike',

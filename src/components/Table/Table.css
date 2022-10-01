@@ -1,47 +1,50 @@
-table{
-    display:contents;
+table {
+  display: contents;
 }
+
 .table {
-    display: table;
-    text-align: center;
-    table-layout: fixed;
-    border-collapse: collapse;
-    border: 3px solid purple;
-    height: auto;
-    width:100%;
-  }
+  display: table;
+  text-align: center;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: 3px solid purple;
+  height: auto;
+  width: 100%;
+}
 
-  .table_header{
-    font-weight: 700;
-    font-size: 20px;
-    border-bottom: 1px solid red;
-  }
+.table_header {
+  font-weight: 700;
+  font-size: 20px;
+  border-bottom: 1px solid red;
+}
 
-  th td {
-    border: 20px;
-  }
-  thead tr td:hover {
-    cursor: pointer;
-  }
-  
-  thead th:nth-child(1) {
-    width: 30%;
-  }
-  
-  thead th:nth-child(2) {
-    width: 20%;
-  }
-  
-  thead th:nth-child(3) {
-    width: 15%;
-  }
-  
-  thead th:nth-child(4) {
-    width: 35%;
-  }
-  
-  th, td {
-    padding: 10px;
-    padding-left: 30px;
-    
-  }
+th td {
+  border: 20px;
+}
+
+thead tr td:hover {
+  cursor: pointer;
+}
+
+thead th:nth-child(1) {
+  width: 30%;
+}
+
+thead th:nth-child(2) {
+  width: 20%;
+}
+
+thead th:nth-child(3) {
+  width: 15%;
+}
+
+thead th:nth-child(4) {
+  width: 35%;
+}
+
+th,
+td {
+  padding: 10px;
+  padding-left: 30px;
+
+}
