@@ -1,7 +1,8 @@
 # TableWelbeX
 https://kniferrr.github.io/TableWelbeX/
 
-Без серверной части
+Эта ветка Без серверной части,
+с сервером Ветка main
 
 
 # ТЗ
