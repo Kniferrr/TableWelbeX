@@ -1,14 +1,15 @@
 import React, { useMemo, useEffect } from "react";
 import "../Table/Table.css";
 import { useDispatch } from "react-redux";
-import { setnumAllPages, setData } from "../../Store/redusers/table";
+import { setnumAllPages, setData,ERROR,restart } from "../../Store/redusers/table";
 import { useSelector } from "react-redux";
 import { sortRenderData } from "../App/sort";
 import getData from "../../http/servises/getData";
+import {LoginActionCreater} from "../../Store/actionCreater/getDataActionCreater";
 
 const TableBoudy = () => {
   const dispatch = useDispatch();
-  const { sort, page, sortColomn, sortCondition, argument, coutSort, data } =
+  const { sort, page, sortColomn, sortCondition, argument, coutSort, data,error } =
     useSelector((state) => state.table);
 
   const { renderDataSort, numAllPagesSort } = useMemo(
@@ -17,9 +18,10 @@ const TableBoudy = () => {
   );
 
   useEffect(() => {
-    dispatch(setnumAllPages(numAllPagesSort));
     getData.fetchData().then((data) => {
       dispatch(setData(data));
+    }).catch(()=>{
+      dispatch(ERROR());
     });
   }, []);
   useEffect(() => {
@@ -27,6 +29,12 @@ const TableBoudy = () => {
   }, [renderDataSort]);
 
   let itemKey = 0;
+  
+  if(error){
+    setTimeout(() => {
+      window.location.reload();
+    }, "3000")
+  }
   return renderDataSort.map((el) => {
     return (
       <tr key={itemKey++}>
