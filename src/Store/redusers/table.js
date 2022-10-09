@@ -10,6 +10,7 @@ const initialState = {
   sortState: false,
   coutSort: 0,
   error: false,
+  data: [],
 };
 
 export const table = createSlice({
@@ -54,6 +55,9 @@ export const table = createSlice({
     setnumAllPages: (state, action) => {
       state.numAllPages = action.payload;
     },
+    setData: (state, action) => {
+      state.data = action.payload;
+    },
   },
 });
 
@@ -67,6 +71,7 @@ export const {
   submitForm,
   ERROR,
   setnumAllPages,
+  setData,
 } = table.actions;
 
 export default table.reducer;

@@ -1,42 +1,43 @@
-import { data } from "../../data/data";
+
 
 export const sotrHeader = (data, renderData, sort) => {
+  let arrayForSort = [...renderData]
   switch (sort) {
     case "name": {
-      renderData = renderData.sort((a, b) => (a.name > b.name ? 1 : -1));
+      arrayForSort = arrayForSort.sort((a, b) => (a.name > b.name ? 1 : -1));
       break;
     }
     case "unname": {
-      renderData = renderData.sort((a, b) => (a.name > b.name ? 1 : -1));
-      renderData = renderData.reverse();
+      arrayForSort = arrayForSort.sort((a, b) => (a.name > b.name ? 1 : -1));
+      arrayForSort = arrayForSort.reverse();
       break;
     }
     case "points": {
-      renderData = renderData.sort((a, b) => (a.points > b.points ? 1 : -1));
+      arrayForSort = arrayForSort.sort((a, b) => (a.points > b.points ? 1 : -1));
       break;
     }
     case "unpoints": {
-      renderData = renderData.sort((a, b) => (a.points > b.points ? -1 : 1));
+      arrayForSort = arrayForSort.sort((a, b) => (a.points > b.points ? -1 : 1));
       break;
     }
     case "distance": {
-      renderData = renderData.sort((a, b) =>
+      arrayForSort = arrayForSort.sort((a, b) =>
         a.distance > b.distance ? 1 : -1
       );
       break;
     }
     case "undistance": {
-      renderData = renderData.sort((a, b) =>
+      arrayForSort = arrayForSort.sort((a, b) =>
         a.distance > b.distance ? -1 : 1
       );
       break;
     }
     default: {
-      renderData = data;
+      arrayForSort = data;
       break;
     }
   }
-  return renderData;
+  return arrayForSort;
 };
 
 export const sortForm = (Condition, renderData, Colomn, argument) => {
@@ -63,6 +64,7 @@ export const sortForm = (Condition, renderData, Colomn, argument) => {
       break;
     }
   }
+
   return renderData;
 };
 
@@ -71,13 +73,14 @@ export const sortRenderData = (
   page,
   sortColomn,
   sortCondition,
-  argument
+  argument,
+  data
 ) => {
   let renderDataSort = sortForm(sortCondition, data, sortColomn, argument);
   renderDataSort = sotrHeader(data, renderDataSort, sort);
   const siliseNum = 5 * page;
   const numAllPagesSort = Math.ceil(renderDataSort.length / 5);
   renderDataSort = renderDataSort.slice(siliseNum - 5, siliseNum);
-
+ 
   return { renderDataSort, numAllPagesSort };
 };
