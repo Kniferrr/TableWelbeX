@@ -1,4 +1,4 @@
-import { data } from "../../data/data";
+const data = [];
 
 export const sotrHeader = (data, renderData, sort) => {
   switch (sort) {
