@@ -1,7 +1,5 @@
-
-
 export const sotrHeader = (data, renderData, sort) => {
-  let arrayForSort = [...renderData]
+  let arrayForSort = [...renderData];
   switch (sort) {
     case "name": {
       arrayForSort = arrayForSort.sort((a, b) => (a.name > b.name ? 1 : -1));
@@ -13,11 +11,15 @@ export const sotrHeader = (data, renderData, sort) => {
       break;
     }
     case "points": {
-      arrayForSort = arrayForSort.sort((a, b) => (a.points > b.points ? 1 : -1));
+      arrayForSort = arrayForSort.sort((a, b) =>
+        a.points > b.points ? 1 : -1
+      );
       break;
     }
     case "unpoints": {
-      arrayForSort = arrayForSort.sort((a, b) => (a.points > b.points ? -1 : 1));
+      arrayForSort = arrayForSort.sort((a, b) =>
+        a.points > b.points ? -1 : 1
+      );
       break;
     }
     case "distance": {
@@ -81,6 +83,5 @@ export const sortRenderData = (
   const siliseNum = 5 * page;
   const numAllPagesSort = Math.ceil(renderDataSort.length / 5);
   renderDataSort = renderDataSort.slice(siliseNum - 5, siliseNum);
- 
   return { renderDataSort, numAllPagesSort };
 };

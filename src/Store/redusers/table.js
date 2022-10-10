@@ -10,7 +10,7 @@ const initialState = {
   sortState: false,
   coutSort: 0,
   error: false,
-  data: [{name: "Servev Error"}],
+  data: [{ name: "Servev Error" }],
 };
 
 export const table = createSlice({
@@ -75,7 +75,7 @@ export const {
   ERROR,
   setnumAllPages,
   setData,
-  restart
+  restart,
 } = table.actions;
 
 export default table.reducer;
