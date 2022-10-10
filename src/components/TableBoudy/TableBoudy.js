@@ -1,25 +1,49 @@
 import React, { useMemo, useEffect } from "react";
 import "../Table/Table.css";
 import { useDispatch } from "react-redux";
-import { setnumAllPages } from "../../Store/redusers/table";
+import { setnumAllPages, setData, ERROR } from "../../Store/redusers/table";
 import { useSelector } from "react-redux";
 import { sortRenderData } from "../App/sort";
+import getData from "../../http/servises/getData";
 
 const TableBoudy = () => {
   const dispatch = useDispatch();
-  const { sort, page, sortColomn, sortCondition, argument, coutSort } =
-    useSelector((state) => state.table);
-
+  const {
+    sort,
+    page,
+    sortColomn,
+    sortCondition,
+    argument,
+    coutSort,
+    data,
+    error,
+  } = useSelector((state) => state.table);
+  let itemKey = 0;
   const { renderDataSort, numAllPagesSort } = useMemo(
-    () => sortRenderData(sort, page, sortColomn, sortCondition, argument),
-    [coutSort, sort, page]
+    () => sortRenderData(sort, page, sortColomn, sortCondition, argument, data),
+    [coutSort, sort, page, data]
   );
 
   useEffect(() => {
-    dispatch(setnumAllPages(numAllPagesSort));
-  }, [dispatch, numAllPagesSort, renderDataSort]);
+    getData
+      .fetchData()
+      .then((data) => {
+        dispatch(setData(data));
+      })
+      .catch(() => {
+        dispatch(ERROR());
+      });
+  }, []);
 
-  let itemKey = 0;
+  useEffect(() => {
+    dispatch(setnumAllPages(numAllPagesSort));
+  }, [renderDataSort]);
+
+  if (error) {
+    setTimeout(() => {
+      window.location.reload();
+    }, "3000");
+  }
   return renderDataSort.map((el) => {
     return (
       <tr key={itemKey++}>

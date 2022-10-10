@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "../Paginator/Paginator.css";
 import { setNewPage } from "../../Store/redusers/table";
-import {paginatorPages} from "./paginatorPages";
+import { paginatorPages } from "./paginatorPages";
 
 function Paginator() {
   const dispatch = useDispatch();

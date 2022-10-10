@@ -1,9 +1,15 @@
 # TableWelbeX
-https://kniferrr.github.io/TableWelbeX/
 
-Эта ветка Без серверной части,
-с сервером Ветка main
+Без серверной части - https://kniferrr.github.io/TableWelbeX/
 
+
+# Install с Сервером
+
+npm i
+
+npm run serverinstall
+
+npm run dev
 
 # ТЗ
 
