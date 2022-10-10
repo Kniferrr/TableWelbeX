@@ -26,7 +26,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "serverinstall": "cd server/table && npm i",
-    "server": "cd server/table && npm run start:dev",
+    "server": "cd server/table && nest start --watch",
     "dev": "concurrently \"npm run server\" \"npm start\""
   },
   "eslintConfig": {
