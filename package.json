@@ -24,7 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serverinstall": "cd server && npm i",
+    "serverinstall": "cd server/table && npm i",
     "server": "cd server/table && npm run start:dev",
     "dev": "concurrently \"npm run server\" \"npm start\""
   },
